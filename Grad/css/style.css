@@ -1,0 +1,362 @@
+* {
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  margin: 0px;
+  font-family: 'segoe ui', serif;
+}
+
+.nav {
+  height: 50px;
+  width: 100%;
+  position: relative;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 10px;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #020202;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media (max-width:600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(255, 254, 254, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+  * {
+    box-sizing: border-box
+  }
+}
+
+#img {
+  background-image: url("../Ressources/entete01.jpg");
+  background-size: 100%;
+  height: 500px;
+  background-repeat: no-repeat;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 10%;
+  margin-bottom: 3%;
+  font-family: 'segoe ui', serif;
+  grid-column: 1 / span 2;
+}
+
+.left-section {
+  text-align: center;
+  padding-top: 10%;
+  margin-top: 10%;
+  font-size: larger;
+  font-family: 'segoe ui', serif;
+  grid-column: 1;
+}
+
+.left-section > article {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+}
+
+.right-section {
+  text-align: left;
+  font-size: larger;
+  font-family: 'segoe ui', serif;
+  grid-column: 2;
+}
+
+.right-section > article {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .content-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .right-section {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+}
+
+.info {
+  background: #c2d9ad;
+  padding: 40px;
+  margin-top: 50px;
+  font-family: 'segoe ui', serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: x-large;
+  position: relative;
+}
+
+.info > span {
+  flex-grow: 1;
+  margin-right: 20%;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.contact-button {
+  background-color: #c1ab94;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: larger;
+  cursor: pointer;
+  font-family: 'segoe ui', serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #EFF1C5;
+  color: white;
+  padding: 20px;
+}
+
+.footer-section {
+  text-align: center;
+  color: black;
+  list-style: none;
+}
+
+.copyright {
+  background-color: #EFF1C0;
+  text-align: center;
+  padding: 10px;
+  color: black;
+}
+
+.scroller {
+  width: auto;
+  height: 500px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  margin: auto;
+}
+
+.scroller > img {
+  margin-right: 20px;
+  margin-left: 90px ;
+  margin-top: 20px;
+  height: 250px;
+  width: 250px;
+}
+
+
+.formulaire {
+  text-align: center;
+  position: inherit;
+  font-weight: 500;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+#nom > label {
+  display: inline-block;
+  width: 150px;
+
+}
+
+#nom > input {
+  display: inline-block;
+}
+
+
+#prenom > label {
+  display: inline-block;
+  width: 150px;
+
+}
+
+#prenom > input {
+  display: inline-block;
+}
+
+#cp > label {
+  display: inline-block;
+  width: 150px;
+
+}
+
+#cp > input {
+  display: inline-block;
+}
+
+
+#ville > label {
+  display: inline-block;
+  width: 150px;
+
+}
+
+#ville > input {
+  display: inline-block;
+}
+
+#email > label {
+  display: inline-block;
+  width: 150px;
+
+}
+
+#email > input {
+  display: inline-block;
+}
+
+#tel > label {
+  display: inline-block;
+  width: 150px;
+
+}
+
+#tel > input {
+  display: inline-block;
+}
+
+#message > label {
+  display: inline-block;
+  width: 150px;
+
+}
+
+#message > input {
+  display: inline-block;
+}
+
+
+#button {
+  position: relative;
+  left: 15%;
+  background-color: rgb(173, 253, 180);
+  border-radius: 5px;
+  border: rgb(173, 253, 180);
+  cursor: pointer;
+  font-size: large;
+}
+
+h1 {
+  margin-left: 2%;
+  text-align: center;
+}
+
+li {
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+label {
+  padding: 1%;
+}
+
+textarea {
+  height: 134px;
+  width: 277px;
+}
+
+input#nom {
+  border: 2px solid black;
+}
+
+input#prenom {
+  border: 2px solid black;
+}
+
+input#cp {
+  border: 2px solid black;
+}
+
+input#email {
+  border: 2px solid black;
+}
+
+input#ville {
+  border: 2px solid black;
+}
+
+input#tel {
+  border: 2px solid black;
+}
+
+textarea#message {
+  border: 2px solid black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
