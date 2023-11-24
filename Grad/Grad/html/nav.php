@@ -46,16 +46,10 @@
             <!-- Left links -->
 
             <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-primary me-3">
-                    Connection
-                </button>
-                <button type="button" class="btn btn-primary me-3">
-                    Enregistrement
-                </button>
+                <button onclick="window.location.href = 'login.php';" type="button" class="btn btn-primary me-3">Connection</button>
+                <button onclick="window.location.href = 'register.php';" type="button" class="btn btn-primary me-3">Enregistrement</button>
             </div>
         </div>
-        <!-- Collapsible wrapper -->
     </div>
-    <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
