@@ -13,20 +13,18 @@
 
 <?php
 error_reporting(E_ALL); ini_set("display_errors", 1);
-$user="mysql";
-$mdp="mysql";
-$dbco = new PDO("mysql:host=localhost;dbname=Grad",$user, $mdp);
-session_start();
+$user = "mysql";
+$mdp = "mysql";
+$dbco = new PDO("mysql:host=localhost;dbname=grad", $user, $mdp);
 
-if(isset($_POST['envoie'])){
-
-    if(!empty($_POST['pseudo']) AND !empty($_POST['password'])){
+if (isset($_POST['envoie'])) {
+    if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
 
-        $sql = "SELECT * FROM users where pseudo = ?";
+        $sql = "SELECT * FROM users WHERE pseudo = ?";
         $get_user = $dbco->prepare($sql);
-        $get_user->execute();
+        $get_user->execute(array($pseudo));
 
         if ($get_user->rowCount() > 0) {
             $data = $get_user->fetch();
@@ -34,21 +32,22 @@ if(isset($_POST['envoie'])){
             if (password_verify($password, $data['password'])) {
                 echo "Connexion effectuée";
                 $_SESSION['pseudo'] = $pseudo;
+            } else {
+                echo "Mot de passe incorrect";
             }
         } else {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO connexion(pseudo, password) VALUES (?, ?)";
+            $sql = "INSERT INTO users(pseudo, password) VALUES (?, ?)";
             $result = $dbco->prepare($sql);
             $result->execute(array($pseudo, $hashedPassword));
 
             echo "Enregistrement effectué";
         }
     } else {
-        echo 'Tous les champs ne sont pas remplie';
+        echo 'Tous les champs ne sont pas remplis.';
     }
 }
-
 ?>
 
 <section class="vh-100" style="background-color: #eee;">
@@ -67,7 +66,7 @@ if(isset($_POST['envoie'])){
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="form3Example1c" class="form-control" />
+                                            <input type="text" id="form3Example1c" class="form-control" name="pseudo" />
                                             <label class="form-label" id="pseudo" name="pseudo" for="form3Example1c">Votre Pseudo</label>
                                         </div>
                                     </div>
@@ -75,8 +74,16 @@ if(isset($_POST['envoie'])){
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4c" class="form-control" />
-                                            <label class="form-label" id="password" name="password" for="form3Example4c">Mot de passe</label>
+                                            <input type="password" id="form3Example4c" class="form-control" name="password" required />
+                                            <label class="form-label" for="form3Example4c">Mot de passe</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="password" id="form3Example5c" class="form-control" name="confirm_password" required />
+                                            <label class="form-label" for="form3Example5c">Confirmer le mot de passe</label>
                                         </div>
                                     </div>
 
