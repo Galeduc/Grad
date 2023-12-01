@@ -34,7 +34,7 @@ echo "Connexion effectuée";
 $_SESSION['pseudo'] = $nom;
 
 if ($nom === 'admin') {
-header("Location: admin.php");
+header("Location: index.php");
 exit();
 } else {
 header("Location: index.php");

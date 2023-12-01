@@ -10,7 +10,7 @@
     <script src="../js/script.js"></script>
 </head>
 <body>
-<?php include 'nav.php' ?>
+<?php include 'nav.php'?>
 <div class="content-container">
     <section id="img">
         <span>Administration</span>
@@ -31,7 +31,7 @@
 
 <?php
 $serveur = "localhost";
-$dbname = "Grad";
+$dbname = "grad";
 $user = "mysql";
 $pass = "mysql";
 
@@ -74,7 +74,7 @@ while ($donnees = $req->fetch()) { ?>
                     document.getElementById('etat_' + dataId).textContent = selectedValue;
 
                     var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "update.php", true);
+                    xhr.open("POST", "Update.php", true);
                     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4) {
@@ -90,7 +90,7 @@ while ($donnees = $req->fetch()) { ?>
                 }
             });
         } else {
-            console.error("L'élément avec l'ID spécifié n'a pas été trouvé.");
+            console.eror("L'élément avec l'ID spécifié n'a pas été trouvé.");
         }
     });
 </script>
