@@ -4,11 +4,10 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="mdb-ui-kit" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="59fa4e08aa" level="application" />
-    <orderEntry type="library" name="mdb-ui-kit" level="application" />
     <orderEntry type="library" name="59fa4e08aa" level="application" />
-    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="mdb-ui-kit" level="application" />
+    <orderEntry type="library" name="jquery-3.6.4" level="application" />
   </component>
 </module>

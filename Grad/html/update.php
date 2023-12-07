@@ -1,6 +1,6 @@
 <?php
 $serveur = "localhost";
-$dbname = "grad";
+$dbname = "Grad";
 $user = "mysql";
 $pass = "mysql";
 

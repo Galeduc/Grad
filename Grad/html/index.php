@@ -1,24 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="utf-8">
-  <title>Grad</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/59fa4e08aa.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/script.js"></script>
+    <style>
+        .center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
+
 <body>
-<?php include 'nav.php' ?>
-<div class="content-container">
-    <section id="img">
-        <span>Bienvenue chez Grad</span>
-    </section>
-    <body>
-<section class="container-fluid">
-    <div class="row">
-        <div class="col-6">
+<?php include 'nav.php'; ?>
+<div class="container-fluid p-0 position-relative">
+    <img src="../Ressources/entete01.jpg" class="img-fluid w-100" alt="Bienvenue chez Grad">
+    <div class="center-text text-center text-white">
+        <h1 class="display-3">Bienvenue chez Grad</h1>
+    </div>
+</div>
+
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
             <div class="card flex-md-row mb-4 box-shadow h-md-250 m-3">
                 <div class="card-body d-flex flex-column align-items-start flex-grow-1 pr-md-3">
                     <h3>VOTRE SPÉCIALISTE BOIS</h3>
@@ -43,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+            <div class="col-md-6">
             <div class="card flex-md-row mb-4 box-shadow h-md-250 m-3">
                 <div class="card-body d-flex flex-column align-items-start flex-grow-1 pr-md-3">
                     <h3>L’innovation, dans l’ADN de la marque grad !</h3>
@@ -75,6 +87,4 @@
     </div>
     </body>
     <?php include 'footer.php'?>
-</div>
-</body>
 </html>

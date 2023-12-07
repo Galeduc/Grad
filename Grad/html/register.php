@@ -11,9 +11,10 @@
 </head>
 <body>
 <?php include 'nav.php' ?>
-
 <?php
-error_reporting(E_ALL); ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 $user = "mysql";
 $mdp = "mysql";
 $dbco = new PDO("mysql:host=localhost;dbname=grad", $user, $mdp);
@@ -23,33 +24,28 @@ if (isset($_POST['envoie'])) {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
 
-        $sql = "SELECT * FROM users WHERE pseudo = ?";
-        $get_user = $dbco->prepare($sql);
-        $get_user->execute(array($pseudo));
+        $check_user_sql = "SELECT COUNT(*) FROM users WHERE pseudo = ?";
+        $check_user_stmt = $dbco->prepare($check_user_sql);
+        $check_user_stmt->execute(array($pseudo));
 
-        if ($get_user->rowCount() > 0) {
-            $data = $get_user->fetch();
-
-            if (password_verify($password, $data['password'])) {
-                echo "Connexion effectuée";
-                $_SESSION['pseudo'] = $pseudo;
-            } else {
-                echo "Mot de passe incorrect";
-            }
+        if ($check_user_stmt->fetchColumn() > 0) {
+            echo "Ce pseudo est déjà utilisé. Veuillez en choisir un autre.";
         } else {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO users(pseudo, password) VALUES (?, ?)";
-            $result = $dbco->prepare($sql);
-            $result->execute(array($pseudo, $hashedPassword));
+            $insert_user_sql = "INSERT INTO users(pseudo, password) VALUES (?, ?)";
+            $insert_user_stmt = $dbco->prepare($insert_user_sql);
+            $insert_user_stmt->execute(array($pseudo, $hashedPassword));
 
             echo "Enregistrement effectué";
+            $_SESSION['pseudo'] = $pseudo;
         }
     } else {
         echo 'Tous les champs ne sont pas remplis.';
     }
 }
 ?>
+
 
 <section class="vh-100" style="background-color: #eee;">
     <div class="container h-100">

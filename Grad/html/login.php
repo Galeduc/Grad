@@ -11,43 +11,45 @@
 </head>
 <body>
 <?php include 'nav.php'?>
-
 <?php
-error_reporting(E_ALL); ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 $user = "mysql";
 $mdp = "mysql";
 $dbco = new PDO("mysql:host=localhost;dbname=grad", $user, $mdp);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
-$nom = $_POST["pseudo"];
-$password = $_POST["password"];
+    $nom = $_POST["pseudo"];
+    $password = $_POST["password"];
 
-$sql = "SELECT * FROM users WHERE pseudo = ?";
-$get_user = $dbco->prepare($sql);
-$get_user->execute(array($nom));
+    $sql = "SELECT * FROM users WHERE pseudo = ?";
+    $get_user = $dbco->prepare($sql);
+    $get_user->execute(array($nom));
 
-if ($get_user->rowCount() > 0) {
-$data = $get_user->fetch();
+    if ($get_user->rowCount() > 0) {
+        $data = $get_user->fetch();
 
-if (password_verify($password, $data['password'])) {
-echo "Connexion effectuée";
-$_SESSION['pseudo'] = $nom;
+        if (password_verify($password, $data['password'])) {
+            echo "Connexion effectuée";
+            $_SESSION['pseudo'] = $nom;
 
-if ($nom === 'admin') {
-header("Location: index.php");
-exit();
-} else {
-header("Location: index.php");
-exit();
-}
-} else {
-echo "Mot de passe incorrect";
-}
-} else {
-echo "Nom d'utilisateur non trouvé";
-}
+            if ($nom === 'admin') {
+                header("Location: admin.php");
+                exit();
+            } else {
+                header("Location: index.php");
+                exit();
+            }
+        } else {
+            echo "Mot de passe incorrect";
+        }
+    } else {
+        echo "Nom d'utilisateur non trouvé";
+    }
 }
 ?>
+
 <section class="vh-100" style="background-color: #eee;">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">

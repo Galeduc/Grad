@@ -8,13 +8,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/script.js"></script>
+    <style>
+        .center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
+
 <body>
-<?php include 'nav.php'?>
-<div class="content-container">
-    <section id="img">
-        <span>Contactez nous !</span>
-    </section>
+<?php include 'nav.php'; ?>
+<div class="container-fluid p-0 position-relative">
+    <img src="../Ressources/entete01.jpg" class="img-fluid w-100" alt="Bienvenue chez Grad">
+    <div class="center-text text-center text-white">
+        <h1 class="display-3">Contactez nous </h1>
+    </div>
 </div>
 <form action="" method="post">
 <div class="container form-container">

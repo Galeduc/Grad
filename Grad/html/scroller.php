@@ -6,7 +6,7 @@
     //print_r($files1);
 
     for ($i = 2; $i < count($files1); $i++) {
-        echo '<img src="' . $dir . '/' . $files1[$i] . '" alt=""/>';
+        echo '<img src="' . $dir . '/' . $files1[$i] . '" alt="" class="img4"/>';
     }
     ?>
 </div>

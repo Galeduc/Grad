@@ -355,8 +355,3 @@ input#tel {
 textarea#message {
   border: 2px solid black;
 }
-
-a {
-  text-decoration: none;
-  color: black;
-}

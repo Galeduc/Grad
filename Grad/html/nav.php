@@ -2,9 +2,10 @@
 session_start();
 $connected = isset($_SESSION['pseudo']);
 ?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand me-2" href="https://mdbgo.com/">
+        <a class="navbar-brand me-2" href="">
             <img
                     src="../Ressources/logo.jpg"
                     height="50"
@@ -46,10 +47,8 @@ $connected = isset($_SESSION['pseudo']);
             </ul>
 
             <div class="d-flex align-items-center">
-                <?php if ($_SESSION['pseudo'] == 'admin') {?>
-                    <a href="admin.php" class="btn btn-dark me-3">Espace Admin</a>
-                    <a href="deconnexion.php?action=deconnexion" class="btn btn-danger me-3">Déconnexion</a>
-                <?php } else if ($connected){ ?>
+                <?php if ($connected) { ?>
+
                     <a href="deconnexion.php?action=deconnexion" class="btn btn-danger me-3">Déconnexion</a>
                 <?php } else { ?>
                 <button onclick="window.location.href = 'login.php';" type="button" class="btn btn-primary me-3">Connexion</button>
@@ -57,3 +56,22 @@ $connected = isset($_SESSION['pseudo']);
                 <?php } ?>
     </div>
 </nav>
+
+<style>
+    .btn-primary {
+        --bs-btn-bg: #c1ab94;
+        --bs-btn-border-color: #c1ab94;
+    }
+
+    .btn:hover {
+        color: var(--bs-btn-hover-color);
+        background-color: #c2986c;
+        border-color: #c2986c;
+    }
+
+    .custom-button {
+        font-size: 16px;
+        margin: 0;
+    }
+
+</style>
