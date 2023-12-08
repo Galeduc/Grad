@@ -45,16 +45,18 @@ $connected = isset($_SESSION['pseudo']);
                     <a class="nav-link" href="../html/contact.php">Contact</a>
                 </li>
             </ul>
-
             <div class="d-flex align-items-center">
-                <?php if ($connected) { ?>
-
+                <?php if ($_SESSION['pseudo'] == 'admin') {?>
+                    <a href="admin.php" class="btn btn-dark me-3">Espace Admin</a>
+                    <a href="deconnexion.php?action=deconnexion" class="btn btn-danger me-3">Déconnexion</a>
+                <?php } else if ($connected){ ?>
+                    <a href="" class="btn btn-secondary me-3">Commander</a>
                     <a href="deconnexion.php?action=deconnexion" class="btn btn-danger me-3">Déconnexion</a>
                 <?php } else { ?>
-                <button onclick="window.location.href = 'login.php';" type="button" class="btn btn-primary me-3">Connexion</button>
-                <button onclick="window.location.href = 'register.php';" type="button" class="btn btn-primary me-3">Enregistrement</button>
+                    <button onclick="window.location.href = 'login.php';" type="button" class="btn btn-primary me-3">Connexion</button>
+                    <button onclick="window.location.href = 'register.php';" type="button" class="btn btn-primary me-3">Enregistrement</button>
                 <?php } ?>
-    </div>
+            </div>
 </nav>
 
 <style>

@@ -32,7 +32,7 @@
 
 <?php
 $serveur = "localhost";
-$dbname = "Grad";
+$dbname = "grad";
 $user = "mysql";
 $pass = "mysql";
 
