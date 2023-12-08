@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Grad</title>
     <script src="https://kit.fontawesome.com/59fa4e08aa.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" integrity="sha512-eEdkKfYV/yKmpeDVb618mtl/JrJka0Y2ONEjJ9AjUazHpsRf+zm+eROxUqUKz3r89rR5tTyatSbkSlVNF/T1FQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/script.js"></script>
