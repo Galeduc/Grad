@@ -7,15 +7,6 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-DROP TABLE IF EXISTS `Commande`;
-CREATE TABLE `Commande` (
-  `nom_client` text NOT NULL,
-  `produit` text NOT NULL,
-  `quantite` int(11) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 DROP TABLE IF EXISTS `form`;
 CREATE TABLE `form` (
   `nom` text NOT NULL,
@@ -36,34 +27,23 @@ INSERT INTO `form` (`nom`, `prenom`, `cp`, `email`, `tel`, `message`, `etat`, `i
 ('t',	't',	'43',	'abc@gmail.com',	'23241234',	'REUSSI',	'❌',	4)
 ON DUPLICATE KEY UPDATE `nom` = VALUES(`nom`), `prenom` = VALUES(`prenom`), `cp` = VALUES(`cp`), `email` = VALUES(`email`), `tel` = VALUES(`tel`), `message` = VALUES(`message`), `etat` = VALUES(`etat`), `id` = VALUES(`id`);
 
-DROP TABLE IF EXISTS `Produit`;
-CREATE TABLE `Produit` (
+DROP TABLE IF EXISTS `produits`;
+CREATE TABLE `produits` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `produit_nom` text NOT NULL,
-  `produit_stock` int(100) NOT NULL,
+  `nom` varchar(200) NOT NULL,
+  `desc` text NOT NULL,
+  `prix` decimal(7,2) NOT NULL,
+  `quantite` int(11) NOT NULL,
+  `img` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO `Produit` (`id`, `produit_nom`, `produit_stock`) VALUES
-(1,	'Accoya',	10),
-(2,	'Thermofrene',	10),
-(3,	'Thermopin',	10),
-(4,	'kebony',	10)
-ON DUPLICATE KEY UPDATE `id` = VALUES(`id`), `produit_nom` = VALUES(`produit_nom`), `produit_stock` = VALUES(`produit_stock`);
-
-DROP TABLE IF EXISTS `Stock`;
-CREATE TABLE `Stock` (
-  `site` int(11) NOT NULL,
-  `produit` text NOT NULL,
-  `quantite` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-INSERT INTO `Stock` (`site`, `produit`, `quantite`) VALUES
-(1,	'Accoya',	10),
-(1,	'Thermofrene',	10),
-(1,	'Thermopin',	10),
-(1,	'kebony',	10)
-ON DUPLICATE KEY UPDATE `site` = VALUES(`site`), `produit` = VALUES(`produit`), `quantite` = VALUES(`quantite`);
+INSERT INTO `produits` (`id`, `nom`, `desc`, `prix`, `quantite`, `img`) VALUES
+(1,	'Accoya',	'',	29.99,	10,	'accoya.jpg'),
+(2,	'Thermofrene',	'',	14.99,	10,	'thermofrene.png'),
+(3,	'Kebony',	'',	19.99,	10,	'kebony.jpg'),
+(4,	'Thermopin',	'',	10.00,	10,	'thermopin.jpg')
+ON DUPLICATE KEY UPDATE `id` = VALUES(`id`), `nom` = VALUES(`nom`), `desc` = VALUES(`desc`), `prix` = VALUES(`prix`), `quantite` = VALUES(`quantite`), `img` = VALUES(`img`);
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -78,4 +58,4 @@ INSERT INTO `users` (`id`, `pseudo`, `password`) VALUES
 (3,	'admin',	'$2y$10$qiJhhuw9QCb/tL0lUuaiZOCUT8Ia6Sdhc9QZQnBV1vBNfpSdAqki6')
 ON DUPLICATE KEY UPDATE `id` = VALUES(`id`), `pseudo` = VALUES(`pseudo`), `password` = VALUES(`password`);
 
--- 2023-12-08 10:35:46
+-- 2023-12-15 10:54:28

@@ -2,7 +2,6 @@
 session_start();
 $connected = isset($_SESSION['pseudo']);
 ?>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand me-2" href="">
@@ -52,9 +51,11 @@ $connected = isset($_SESSION['pseudo']);
                 <?php } else if ($connected){ ?>
                     <a href="commande.php" class="btn btn-secondary text-white me-3">Commander</a>
                     <a href="deconnexion.php?action=deconnexion" class="btn btn-danger text-white me-3">Déconnexion</a>
-                    <form class="d-flex">
-                        <button onclick="window.location.href = 'panier.php';" class="btn btn-secondary" type="submit"><i class="bi-cart-fill me-1"></i>Panier<span class="badge bg-dark text-white ms-1 rounded-pill">0</span></button>
-                    </form>
+                        <div class="link-icons">
+                            <a href="panier.php?page=cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </div>
                 <?php } else { ?>
                     <button onclick="window.location.href = 'login.php';" type="button" class="btn btn-primary text-white me-3">Connexion</button>
                     <button onclick="window.location.href = 'register.php';" type="button" class="btn btn-primary text-white me-3">Enregistrement</button>

@@ -19,7 +19,29 @@
 </head>
 
 <body>
-<?php include 'nav.php'; ?>
+<?php
+session_start();
+$connected = isset($_SESSION['pseudo']);
+
+function pdo_connect_mysql()
+{
+    $HOST = 'localhost';
+    $USER = 'mysql';
+    $PASS = 'mysql';
+    $NAME = 'grad';
+    try {
+        return new PDO('mysql:host=' . $HOST . ';dbname=' . $NAME . ';charset=utf8', $USER, $PASS);
+    } catch (PDOException $exception) {
+        exit('Failed to connect to database!');
+    }
+}
+?>
+<?php include 'nav.php'; $pdo = pdo_connect_mysql();
+
+$stmt = $pdo->prepare('SELECT * FROM produits');
+$stmt->execute();
+$recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <div class="container-fluid p-0 position-relative">
     <img src="../Ressources/entete01.jpg" class="img-fluid w-100" alt="Bienvenue chez Grad">
     <div class="center-text text-center text-white">
@@ -29,12 +51,13 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <?php foreach ($recently_added_products as $produits): ?>
             <div class="col mb-5">
                 <div class="card h-100">
-                    <img class="card-img-top" src="../img/accoya.jpg" alt="..." height="250"  />
+                    <img class="card-img-top" src="../img/<?=$produits['img']?>" width="200" height="200"/>
                     <div class="card-body p-4">
                         <div class="text-center">
-                            <h5 class="fw-bolder">Accoya</h5>
+                            <h5 class="fw-bolder"><?=$produits['nom']?></h5>
                             <div class="d-flex justify-content-center small text-warning mb-2">
                                 <div class="bi-star-fill"></div>
                                 <div class="bi-star-fill"></div>
@@ -42,84 +65,22 @@
                                 <div class="bi-star-fill"></div>
                                 <div class="bi-star-fill"></div>
                             </div>
-                            18.00€
+                            <?=$produits['prix']?> &euro;
                         </div>
                     </div>
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-secondary text-white mt-auto" href="#">Ajouter au panier</a></div>
+                        <form action="panier.php?page=cart" method="post">
+                            <input type="number" name="quantite" value="1" min="1" max="<?=$produits['quantite']?>" placeholder="Quantity" required>
+                            <input type="hidden" name="produits_id" value="<?=$produits['id']?>">
+                            <br>
+                            <div class="text-center"><input class="btn btn-secondary text-white mt-auto" type="submit" value="Ajouter au panier"></div>
                     </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="../img/thermofrene.png" alt="..." height="250"  />
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">Thermofrene</h5>
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            18.00€
-                        </div>
-                    </div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-secondary text-white mt-auto" href="#">Ajouter au panier</a></div>
-                    </div>
+            <?php endforeach; ?>
                 </div>
             </div>
-
-
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="../img/kebony.jpg" alt="..." height="250"  />
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">Kebony</h5>
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            18.00€
-                        </div>
-                    </div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-secondary text-white mt-auto" href="#">Ajouter au panier</a></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="../img/thermopin.jpg" alt="..." height="250" />
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">Thermopin</h5>
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            40.00€
-                        </div>
-                    </div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-secondary text-white mt-auto" href="#">Ajouter au panier</a></div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 <?php include 'footer.php'?>
 </body>
